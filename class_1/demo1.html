@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+  <div id='title'>标题</div>
+  <div id= 'content'>内容</div>
+  <script>
+    var render = function() {
+      document.getElementById('title').innerHTML = this.state.title
+      document.getElementById('content').innerHTML = this.state.content
+    }
+
+    var state = {
+      title: '这是一个标题',
+      content: '这是一个内容'
+    }
+
+    var setState = function(newState) {
+      state = {
+        ...state,
+        ...newState
+      }
+      render()
+    }
+
+    var dispatch = function(action) {
+      switch(action.type) {
+        case 'CHANGE_TITLE':
+          setState({
+            title: action.newTitle
+          })
+          break;
+        default:
+          break;
+      }
+    }
+    dispatch({
+      type: 'CHANGE_TITLE',
+      newTitle: 'this is new title'
+    })
+
+    render()
+
+  </script>
+</body>
+</html>
